@@ -1,8 +1,22 @@
-test_job:
+stages:
+  - build
+  - lint
+  - test
 
-    tags:
-        - builder-shell
+before_script:
+  - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
 
-    script:
-        - docker pull archlinux/base
-        - docker build -t qrlipsync .
+build:
+  stage: build
+  script:
+    - make build
+    - make push
+lint:
+  stage: lint
+  script:
+    - make lint
+
+test:
+  stage: test
+  script:
+    - make test
