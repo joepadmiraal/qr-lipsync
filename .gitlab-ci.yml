@@ -8,15 +8,21 @@ before_script:
 
 build:
   stage: build
+  tags:
+    - builder-shell
   script:
     - make build
     - make push
 lint:
   stage: lint
+  tags:
+    - builder-shell
   script:
     - make lint
 
 test:
   stage: test
+  tags:
+    - builder-shell
   script:
     - make test
