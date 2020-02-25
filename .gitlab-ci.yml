@@ -9,20 +9,19 @@ before_script:
 build:
   stage: build
   tags:
-    - builder-shell
+    - dind
   script:
     - make build
     - make push
 lint:
   stage: lint
   tags:
-    - builder-shell
+    - dind
   script:
     - make lint
-
 test:
   stage: test
   tags:
-    - builder-shell
+    - dind
   script:
     - make test
