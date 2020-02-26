@@ -1,11 +1,12 @@
+image: registry.ubicast.net/docker/dind-compose
+services:
+  - docker:dind
 stages:
   - build
   - lint
   - test
-
 before_script:
   - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
-
 build:
   stage: build
   tags:
